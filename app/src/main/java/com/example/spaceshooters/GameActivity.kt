@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class GameActivity : AppCompatActivity() {
     lateinit var mySensorManager: MySensorManager
+    lateinit var blaster: Blaster
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
