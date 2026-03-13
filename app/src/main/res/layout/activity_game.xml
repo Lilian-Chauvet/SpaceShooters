@@ -20,15 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".GameActivity">
-
-        <ImageView
-            android:id="@+id/iv_blaster"
-            android:layout_width="154dp"
-            android:layout_height="499dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/blaster"
-            tools:layout_editor_absoluteY="1030dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
