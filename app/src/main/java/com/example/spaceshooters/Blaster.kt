@@ -20,13 +20,13 @@ class Blaster(pContext: GameActivity) {
         val screenHeight = metrics.heightPixels
 
         //taille de l'image
-        val ratio = skin.height / 200
+        val ratio = skin.layoutParams.height / skin.layoutParams.width
         Log.i("taille", "height"+skin.height.toString())
         Log.i("taille", skin.width.toString())
 
         val blasterWidth = (screenWidth * 0.2f).toInt()
         val blasterHeight = (blasterWidth * ratio)
-        skin.layoutParams = ViewGroup.LayoutParams(blasterWidth, blasterHeight)
+        //skin.layoutParams = ViewGroup.LayoutParams(blasterWidth, blasterHeight)
         /*
         //positionnement en bas au centre
         skin.x = ((screenWidth / 2) - (skin.width/2)).toFloat()
