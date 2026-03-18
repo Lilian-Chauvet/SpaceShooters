@@ -25,11 +25,76 @@
             android:id="@+id/btn_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="92dp"
-            android:text="Play"
+
+            android:background="@android:color/transparent"
+
+            android:backgroundTint="@null"
+            android:fontFamily="@font/jersey10"
+            android:text="@string/play"
+            android:textColor="#FFFF00"
+            android:textSize="72sp"
+
+            android:padding="0dp"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+
+            app:layout_constraintBottom_toTopOf="@+id/btn_options"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+
+        <Button
+            android:id="@+id/btn_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@android:color/transparent"
+            android:backgroundTint="@null"
+
+            android:fontFamily="@font/jersey10"
+            android:text="@string/options"
+            android:textColor="#FFFF00"
+            android:textSize="72sp"
+
+            android:padding="0dp"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+
+            app:layout_constraintBottom_toTopOf="@+id/btn_credits"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_credits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="24dp"
+            android:background="@android:color/transparent"
+
+            android:backgroundTint="@null"
+            android:fontFamily="@font/jersey10"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+
+            android:padding="0dp"
+            android:text="@string/credits"
+            android:textColor="#FFFF00"
+
+            android:textSize="72sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="326dp"
+            android:layout_height="342dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logospaceshooter" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
