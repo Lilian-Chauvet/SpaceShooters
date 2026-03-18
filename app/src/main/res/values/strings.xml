@@ -3,4 +3,17 @@
     <string name="play">PLAY</string>
     <string name="options">OPTIONS</string>
     <string name="credits">CREDITS</string>
+    <string name="credits_text">
+        Name: SpaceShooters\n
+
+        Author: Lilian Chauvet\n
+
+        School: IUT of Laval, France\n
+
+        Year: 2026\n
+
+        Version: 1.0.0\n
+
+        Description : School project in Android Studio\n
+    </string>
 </resources>
