@@ -32,6 +32,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="92dp" />
+
+        <ImageView
+            android:id="@+id/iv_return"
+            android:layout_width="43dp"
+            android:layout_height="41dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/returnarrow" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

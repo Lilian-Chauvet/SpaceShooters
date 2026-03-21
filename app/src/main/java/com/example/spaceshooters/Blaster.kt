@@ -11,7 +11,7 @@ class Blaster(pContext: GameActivity) {
 
     fun display(){
         //afficher l'image
-        skin.setBackgroundResource(R.drawable.blaster)
+        skin.setImageResource(R.drawable.blaster)
         context.gameArea.addView(skin)
 
         //Récupérer la taille de l'écran
@@ -19,18 +19,23 @@ class Blaster(pContext: GameActivity) {
         val screenWidth = metrics.widthPixels
         val screenHeight = metrics.heightPixels
 
-        //taille de l'image
-        val ratio = skin.layoutParams.height / skin.layoutParams.width
-        Log.i("taille", "height"+skin.height.toString())
-        Log.i("taille", skin.width.toString())
+        skin.post{
+            //taille de l'image
+            val ratio = skin.height / skin.width
 
-        val blasterWidth = (screenWidth * 0.2f).toInt()
-        val blasterHeight = (blasterWidth * ratio)
-        //skin.layoutParams = ViewGroup.LayoutParams(blasterWidth, blasterHeight)
-        /*
-        //positionnement en bas au centre
-        skin.x = ((screenWidth / 2) - (skin.width/2)).toFloat()
-        skin.y = (screenHeight - (skin.height/2)).toFloat()
-         */
+            val blasterWidth = (screenWidth * 0.3f).toInt()
+            val blasterHeight = (blasterWidth * ratio)
+            skin.layoutParams = ViewGroup.LayoutParams(blasterWidth, blasterHeight)
+
+            Log.i("taille", "width: ${skin.width} height: ${skin.height}")
+            //positionnement en bas au centre
+            skin.x = ((screenWidth / 2) - (blasterWidth/2)).toFloat()
+            skin.y = (screenHeight - (blasterHeight/2)).toFloat()
+            skin.y = skin.y - (blasterHeight*0.1f)
+        }
+    }
+
+    fun shoot(){
+
     }
 }

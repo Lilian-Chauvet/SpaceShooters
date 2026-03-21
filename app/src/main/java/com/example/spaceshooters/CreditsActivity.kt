@@ -7,9 +7,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.view.View
 import android.view.animation.LinearInterpolator
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 
 class CreditsActivity : AppCompatActivity() {
+    lateinit var iv_return: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -19,11 +23,12 @@ class CreditsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        iv_return = findViewById(R.id.iv_return)
+        iv_return.setOnClickListener {
+            finish()
+        }
         startCreditsScroll();
     }
-
-
-
 
     private fun startCreditsScroll() {
         val credits = findViewById<TextView>(R.id.tv_credits)
