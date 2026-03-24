@@ -37,9 +37,7 @@ class Projectile(pContext: GameActivity, angle: Float) {
     fun launch(x: Float, y: Float) {
         skin.x = x
         skin.y = y
-
-        Log.i("projectile", "x : "+skin.x.toString())
-        Log.i("projectile", "y : "+skin.y.toString())
+        skin.rotation = context.blaster.getSkin().rotation
 
         //lancer la boucle pour modifier l'affichage
         updateUI()

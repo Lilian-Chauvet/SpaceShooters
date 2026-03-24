@@ -5,13 +5,12 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.util.Log
 
 class MySensorManager (pContext: GameActivity) : SensorEventListener {
 
     private val context         = pContext
     private val sensorManager   = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-    private val rotationVector  = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
+    private val rotationVector  = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
 
 
 
@@ -19,17 +18,9 @@ class MySensorManager (pContext: GameActivity) : SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-        val rotationMatrix = FloatArray(9)
-        SensorManager.getRotationMatrixFromVector(rotationMatrix, event.values)
+        val rotationZ = event?.values[2] // axe Z (rotation écran)
 
-        val orientations = FloatArray(3)
-        SensorManager.getOrientation(rotationMatrix, orientations)
-
-        //rotation à plat (style boussole)
-        val azimuth = Math.toDegrees(orientations[0].toDouble()).toFloat()
-        Log.i("azimuth", azimuth.toString())
-
-        context.blaster.rotate(azimuth)
+        context.blaster.rotate(rotationZ)
     }
 
     fun start() {

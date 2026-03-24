@@ -1,13 +1,15 @@
 package com.example.spaceshooters
 
 import android.os.Bundle
+import android.view.GestureDetector
+import android.view.MotionEvent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class GameActivity : AppCompatActivity() {
+class GameActivity : AppCompatActivity(){
     lateinit var mySensorManager: MySensorManager
     lateinit var gameArea: ConstraintLayout
     lateinit var blaster: Blaster
@@ -23,7 +25,6 @@ class GameActivity : AppCompatActivity() {
         }
 
         mySensorManager = MySensorManager(this)
-
         gameArea = findViewById(R.id.gameArea)
 
         startGame()
