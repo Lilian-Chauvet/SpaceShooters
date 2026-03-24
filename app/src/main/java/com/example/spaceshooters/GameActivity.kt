@@ -24,16 +24,22 @@ class GameActivity : AppCompatActivity() {
 
         mySensorManager = MySensorManager(this)
 
-        mySensorManager.displaySensors()
-
         gameArea = findViewById(R.id.gameArea)
 
         startGame()
     }
 
+    override fun onResume() {
+        mySensorManager.start()
+        super.onResume()
+    }
+
+    override fun onPause() {
+        mySensorManager.stop()
+        super.onPause()
+    }
 
     private fun startGame() {
         blaster = Blaster(this)
-        blaster.display()
     }
 }
