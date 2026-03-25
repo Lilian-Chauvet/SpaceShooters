@@ -10,9 +10,6 @@ class Blaster(pContext: GameActivity) {
 
     init{
         display()
-        skin.setOnClickListener{
-            shoot()
-        }
         skin.setOnLongClickListener {
             resetRotation()
             true
@@ -30,26 +27,23 @@ class Blaster(pContext: GameActivity) {
     fun display(){
         //afficher l'image
         skin.setImageResource(R.drawable.blaster)
-        context.gameArea.addView(skin)
 
         //Récupérer la taille de l'écran
         val metrics = context.resources.displayMetrics
         val screenWidth = metrics.widthPixels
         val screenHeight = metrics.heightPixels
 
-        skin.post{
-            //taille de l'image
-            val ratio = skin.height / skin.width
+        val width = (screenWidth * 0.5f).toInt()
 
-            val blasterWidth = (screenWidth * 0.3f).toInt()
-            val blasterHeight = (blasterWidth * ratio)
-            skin.layoutParams = ViewGroup.LayoutParams(blasterWidth, blasterHeight)
+        val params = ViewGroup.LayoutParams(width, width)
+        skin.layoutParams = params
 
-            //positionnement en bas au centre
-            skin.x = ((screenWidth / 2) - (blasterWidth/2)).toFloat()
-            skin.y = (screenHeight - (blasterHeight/2)).toFloat()
-            skin.y = skin.y - (blasterHeight*0.1f)
-        }
+        context.gameArea.addView(skin)
+
+        //positionnement en bas au centre
+        skin.x = ((screenWidth / 2) - (width/2)).toFloat()
+        skin.y = (screenHeight - (width/2)).toFloat()
+        skin.y = skin.y - (width*0.1f)
     }
 
     fun shoot() {
@@ -90,7 +84,7 @@ class Blaster(pContext: GameActivity) {
     fun rotate(rotation: Float?) {
         if (rotation != null) {
             if (skin.rotation+rotation < 90 && skin.rotation+rotation > -90)
-            skin.rotation += rotation
+            skin.rotation -= rotation
         }
     }
 

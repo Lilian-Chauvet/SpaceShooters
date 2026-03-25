@@ -12,29 +12,22 @@ class Projectile(pContext: GameActivity, angle: Float) {
     val vx = (Math.sin(rad) * SPEED).toFloat()
     val vy = (Math.cos(rad) * SPEED * (-1)).toFloat()
 
-    init{
-        display()
-        Log.i("projectile", "vx : "+vx.toString())
-        Log.i("projectile", "vy : "+vy.toString())
-    }
 
     fun display(){
-        //afficher l'image
         skin.setImageResource(R.drawable.projectile)
+
+        val width = (context.blaster.getSkin().width * 0.1f).toInt()
+        val height = width
+
+        val params = ViewGroup.LayoutParams(width, height)
+        skin.layoutParams = params
+
         context.gameArea.addView(skin)
-
-        //Adapter la taille du projectile au canon (10% largeur)
-        skin.post{
-            //taille de l'image
-            val ratio = skin.height / skin.width
-
-            val width = (context.blaster.getSkin().width * 0.1f).toInt()
-            val height = (width * ratio)
-            skin.layoutParams = ViewGroup.LayoutParams(width, height)
-        }
     }
 
     fun launch(x: Float, y: Float) {
+        display()
+
         skin.x = x
         skin.y = y
         skin.rotation = context.blaster.getSkin().rotation

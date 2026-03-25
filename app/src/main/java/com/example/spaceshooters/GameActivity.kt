@@ -8,11 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.lang.Thread.sleep
 
 class GameActivity : AppCompatActivity(){
     lateinit var mySensorManager: MySensorManager
     lateinit var gameArea: ConstraintLayout
     lateinit var blaster: Blaster
+    val enemies = mutableListOf<Enemy>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,9 @@ class GameActivity : AppCompatActivity(){
 
         mySensorManager = MySensorManager(this)
         gameArea = findViewById(R.id.gameArea)
-
+        gameArea.setOnClickListener{
+            blaster.shoot()
+        }
         startGame()
     }
 
@@ -42,5 +46,17 @@ class GameActivity : AppCompatActivity(){
 
     private fun startGame() {
         blaster = Blaster(this)
+
+        spawnEnemies()
+    }
+
+    private fun spawnEnemies() {
+        for (i in 0 until 100) {
+            gameArea.postDelayed({
+                val enemy = Enemy(this)
+                enemies.add(enemy)
+                enemy.attack()
+            }, i * 2000L)
+        }
     }
 }
