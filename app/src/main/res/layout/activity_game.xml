@@ -20,6 +20,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".GameActivity">
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jersey10"
+            android:text="00"
+            android:textColor="#FFFF00"
+            android:textSize="72sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ib_pauseButton"
+            android:layout_width="92dp"
+            android:layout_height="79dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/pause_icon" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Menu pause -->
+    <LinearLayout
+        android:id="@+id/pauseMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Reprendre"
+            android:textColor="#FFFF00"
+            android:textSize="46sp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Quitter"
+            android:textColor="#FFFF00"
+            android:textSize="46sp"/>
+
+    </LinearLayout>
 
 </FrameLayout>

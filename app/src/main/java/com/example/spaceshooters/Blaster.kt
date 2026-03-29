@@ -1,5 +1,6 @@
 package com.example.spaceshooters
 
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
 
@@ -7,6 +8,7 @@ class Blaster(pContext: GameActivity) {
 
     val context = pContext
     private val skin: ImageView = ImageView(pContext)
+    var rotationMode = 1
 
     init{
         display()
@@ -75,16 +77,22 @@ class Blaster(pContext: GameActivity) {
 
         // créer le projectile
         val projectile = Projectile(context, angleDeg)
+        context.projectiles.add(projectile)
+
 
         // lancer le projectile depuis le bout du canon
         projectile.launch(xCanon.toFloat(), yCanon.toFloat())
     }
 
 
-    fun rotate(rotation: Float?) {
-        if (rotation != null) {
-            if (skin.rotation+rotation < 90 && skin.rotation+rotation > -90)
-            skin.rotation -= rotation
+    fun rotate(rotationDegree: Float?) {
+        if (rotationDegree != null) {
+            val delta = rotationMode * rotationDegree
+            val newRotation = skin.rotation + delta
+
+            if (newRotation < 90 && newRotation > -90) {
+                skin.rotation = newRotation
+            }
         }
     }
 

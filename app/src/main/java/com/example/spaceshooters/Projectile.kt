@@ -1,8 +1,10 @@
 package com.example.spaceshooters
 
+import android.graphics.Point
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.graphics.shapes.MutablePoint
 
 class Projectile(pContext: GameActivity, angle: Float) {
     var SPEED = 20f
@@ -11,9 +13,10 @@ class Projectile(pContext: GameActivity, angle: Float) {
     val rad = Math.toRadians(angle.toDouble())
     val vx = (Math.sin(rad) * SPEED).toFloat()
     val vy = (Math.cos(rad) * SPEED * (-1)).toFloat()
+    val hitPoint = Point(0, 0)
 
 
-    fun display(){
+    fun display() {
         skin.setImageResource(R.drawable.projectile)
 
         val width = (context.blaster.getSkin().width * 0.1f).toInt()
@@ -30,20 +33,21 @@ class Projectile(pContext: GameActivity, angle: Float) {
 
         skin.x = x
         skin.y = y
-        skin.rotation = context.blaster.getSkin().rotation
 
-        //lancer la boucle pour modifier l'affichage
-        updateUI()
+        hitPoint.x = skin.x.toInt() + (skin.width / 2)
+        hitPoint.y = skin.y.toInt()
+        skin.rotation = context.blaster.getSkin().rotation
     }
 
-    private fun updateUI() {
-        skin.post(object : Runnable {
-            override fun run() {
-                skin.x += vx
-                skin.y += vy
+    fun update() {
+        skin.x += vx
+        skin.y += vy
 
-                skin.postDelayed(this, 16)
-            }
-        })
+        hitPoint.x = skin.x.toInt()
+        hitPoint.y = skin.y.toInt()
+    }
+
+    fun disappear() {
+        context.gameArea.removeView(skin)
     }
 }
