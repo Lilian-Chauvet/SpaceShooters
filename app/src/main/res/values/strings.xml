@@ -16,4 +16,7 @@
 
         Description : This game is a school project developed in kotlin with Android Studio\n
     </string>
+    <string name="invert_rotation">
+        Invert blaster rotation
+    </string>
 </resources>

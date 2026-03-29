@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SpaceShooters</string>
+    <string name="play">JOUER</string>
+    <string name="options">OPTIONS</string>
+    <string name="credits">CRÉDITS</string>
+    <string name="credits_text">
+        Nom : SpaceShooters\n
+
+        Auteur : Lilian Chauvet\n
+
+        École : IUT de Laval, France\n
+
+        Année : 2026\n
+
+        Version : 1.0.0\n
+
+        Description : Ce jeu est un projet scolaire développé en Kotlin avec Android Studio\n
+    </string>
+    <string name="invert_rotation">
+        Inverser la rotation du blaster
+    </string>
+</resources>

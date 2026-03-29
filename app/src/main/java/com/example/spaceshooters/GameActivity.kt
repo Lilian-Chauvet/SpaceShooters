@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.preference.PreferenceManager
 import java.lang.Thread.sleep
 
 class GameActivity : AppCompatActivity() {
@@ -58,6 +59,16 @@ class GameActivity : AppCompatActivity() {
     override fun onPause() {
         mySensorManager.stop()
         super.onPause()
+    }
+
+    override fun onStop() {
+        mySensorManager.stop()
+
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = preferences.edit()
+        editor.putInt("score", score)
+        editor.apply()
+        super.onStop()
     }
 
     private fun startGame() {

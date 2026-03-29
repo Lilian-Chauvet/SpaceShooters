@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent">
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:contentDescription="background"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/backgroung" />
 
@@ -19,6 +19,67 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/iv_return"
+            android:layout_width="43dp"
+            android:layout_height="41dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/returnarrow" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/sw_invertRota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+
+            android:fontFamily="@font/jersey10"
+            android:text="@string/invert_rotation"
+            android:textColor="#FFFF00"
+            android:textSize="32sp"
+
+            app:thumbTint="@color/switch_thumb"
+            app:trackTint="@color/switch_track"
+
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/rg_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+
+            android:orientation="vertical"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sw_invertRota">
+
+            <RadioButton
+                android:id="@+id/rb_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English"
+                android:fontFamily="@font/jersey10"
+                android:textColor="#FFFF00"
+                android:textSize="32sp"/>
+
+            <RadioButton
+                android:id="@+id/rb_fr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Français"
+                android:fontFamily="@font/jersey10"
+                android:textColor="#FFFF00"
+                android:textSize="32sp"/>
+
+        </RadioGroup>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
