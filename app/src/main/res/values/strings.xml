@@ -19,4 +19,10 @@
     <string name="invert_rotation">
         Invert blaster rotation
     </string>
+    <string name="rules">
+    Game rules:\n
+
+    You must destroy as many ships as possible before they cross the screen!
+    Tap anywhere to shoot and aim the cannon by rotating your mobile device.
+    </string>
 </resources>

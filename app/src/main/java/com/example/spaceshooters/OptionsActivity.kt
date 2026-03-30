@@ -1,5 +1,6 @@
 package com.example.spaceshooters
 
+import android.content.Context
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.ImageView
@@ -29,28 +30,39 @@ class OptionsActivity : AppCompatActivity() {
             finish()
         }
         radioGroup = findViewById(R.id.rg_language)
+
+        val currentLang = LocaleHelper.getSavedLanguage(this)
+
+        when (currentLang) {
+            "fr" -> radioGroup.check(R.id.rb_fr)
+            "en" -> radioGroup.check(R.id.rb_en)
+        }
+
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_en -> {
                     // mettre anglais
-                    setLocale("en")
+                    changeLanguage("en")
                 }
                 R.id.rb_fr -> {
                     // mettre français
-                    setLocale("fr")
+                    changeLanguage("fr")
                 }
             }
         }
     }
 
-    fun setLocale(languageCode: String) {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-        val config = resources.configuration
-        config.setLocale(locale)
-        resources.updateConfiguration(config, resources.displayMetrics)
+    fun changeLanguage(languageCode: String) {
+        val current = LocaleHelper.getSavedLanguage(this)
+        if (current == languageCode) return
 
-        // Recréer l'activité pour appliquer les changements
+        LocaleHelper.setLocale(this, languageCode)
         recreate()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val lang = LocaleHelper.getSavedLanguage(newBase)
+        val context = LocaleHelper.setLocale(newBase, lang)
+        super.attachBaseContext(context)
     }
 }

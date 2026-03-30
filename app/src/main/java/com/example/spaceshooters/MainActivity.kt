@@ -1,5 +1,6 @@
 package com.example.spaceshooters
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var btn_play: Button
     private lateinit var btn_options: Button
     private lateinit var btn_credits: Button
+    private var currentLang: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +35,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         btn_credits = findViewById(R.id.btn_credits)
         btn_credits.setOnClickListener(this)
+
+        currentLang = LocaleHelper.getSavedLanguage(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val newLang = LocaleHelper.getSavedLanguage(this)
+        if (newLang != currentLang) {
+            recreate()
+        }
     }
 
     override fun onClick(v: View?) {
@@ -49,4 +62,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent)
         }
     }
+
+    override fun attachBaseContext(newBase: Context) {
+        val lang = LocaleHelper.getSavedLanguage(newBase)
+        val context = LocaleHelper.setLocale(newBase, lang)
+        super.attachBaseContext(context)
+    }
+
+
 }

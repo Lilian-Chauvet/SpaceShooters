@@ -20,4 +20,8 @@
     <string name="invert_rotation">
         Inverser la rotation du blaster
     </string>
+    <string name="rules">Règles du jeu :
+
+Vous devez détruire le plus de vaisseaux possible avant qu\'ils ne traversent l\'écran !
+Cliquez n\'importe où pour tirer et diriger le canon en tournant votre appareil mobile.</string>
 </resources>
