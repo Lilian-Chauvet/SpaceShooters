@@ -4,9 +4,10 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
 
-class Enemy(pContext: GameActivity) {
+class Enemy(pContext: GameActivity, pSpeed: Float = 2f) {
 
     val context = pContext
+    var speed = pSpeed
     val skin: ImageView = ImageView(pContext)
 
     fun attack() {
@@ -33,44 +34,39 @@ class Enemy(pContext: GameActivity) {
     }
 
     fun update() {
-        skin.y += 2
+        skin.y += speed.toInt()
     }
 
     fun explode() {
-        // 1. Sauvegarder position et taille
+        // sauvegarder position et taille
         val x = skin.x
         val y = skin.y
         val width = skin.width
         val height = skin.height
 
-        // 2. Supprimer l'ancien skin
+        //  supprimer ancien skin
         context.gameArea.removeView(skin)
 
-        // 3. Créer une nouvelle ImageView pour l'explosion
         val explosionView = ImageView(context)
 
-        // 4. Appliquer taille identique
         val params = ViewGroup.LayoutParams(width, height)
         explosionView.layoutParams = params
 
-        // 5. Positionner au même endroit
         explosionView.x = x
         explosionView.y = y
 
-        // 6. Appliquer l'animation
+        // l'animation
         explosionView.setImageResource(R.drawable.explosion_anim)
-
-        // 7. Ajouter à l'écran
         context.gameArea.addView(explosionView)
-
-        // 8. Lancer l'animation
         val anim = explosionView.drawable as android.graphics.drawable.AnimationDrawable
         anim.start()
-
-        // 9. Supprimer après animation
         val duration = anim.numberOfFrames * 100L // 100ms par frame
         explosionView.postDelayed({
             context.gameArea.removeView(explosionView)
         }, duration)
+    }
+
+    fun disappear() {
+        context.gameArea.removeView(skin)
     }
 }

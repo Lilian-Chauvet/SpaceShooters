@@ -1,6 +1,7 @@
 package com.example.spaceshooters
 
 import android.os.Bundle
+import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
@@ -25,6 +26,7 @@ class GameActivity : AppCompatActivity() {
 
     val enemies = mutableListOf<Enemy>()
     val projectiles = mutableListOf<Projectile>()
+    var difficulty = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,14 +78,24 @@ class GameActivity : AppCompatActivity() {
         gameLoop()
     }
 
-    private fun spawnEnemy() {
-        val enemy = Enemy(this)
-        enemies.add(enemy)
-        enemy.attack()
+    private fun spawnEnemies() {
+        val spawnRate = 0.01f + (difficulty * 0.00001f)
+        var speed = (difficulty * 0.002f)
+        if (speed < 2f) speed = 2f
+        if (Math.random() < spawnRate) {
+            val enemy = Enemy(this, speed)
+            enemies.add(enemy)
+            enemy.attack()
+        }
     }
 
     fun changeScore(value: Int = 1) {
-        score += value
+        if (value > 0) {
+            score += (value + difficulty * 0.001f).toInt()
+        } else {
+            score += (value + difficulty * 0.0005f).toInt()
+        }
+
         tv_score.text = score.toString()
     }
 
@@ -99,26 +111,51 @@ class GameActivity : AppCompatActivity() {
 
     fun gameLoop() {
         if (!isPaused) {
-            // faire apparaitre un ennemi
-            if (Math.random() < 0.01) {
-                spawnEnemy()
+            if (score < 0) {
+                gameOver()
             }
+            val projectilesToRemove = mutableListOf<Projectile>()
+            val enemiesToRemove = mutableListOf<Enemy>()
+            difficulty++
+            spawnEnemies()
+
 
             // déplacer projectiles
             for (p in projectiles) {
                 p.update()
+
+                //retirer les projectiles hors écran
+                if (p.hitPoint.y < 0 || p.hitPoint.x > gameArea.width
+                    || p.hitPoint.x < 0
+                ) {
+                    projectilesToRemove.add(p)
+                    p.disappear()
+                    changeScore(-5)
+                }
             }
 
             // déplacer ennemis
             for (e in enemies) {
                 e.update()
+                if (e.skin.y > gameArea.height) {
+                    enemiesToRemove.add(e)
+                    e.disappear()
+                    changeScore(-40)
+                }
             }
 
             // collisions
             checkCollisions()
+
+            projectiles.removeAll(projectilesToRemove)
+            enemies.removeAll(enemiesToRemove)
         }
 
         gameArea.postDelayed({ gameLoop() }, 16)
+    }
+
+    private fun gameOver() {
+        finish()
     }
 
     private fun checkCollisions() {

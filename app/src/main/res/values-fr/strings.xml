@@ -23,5 +23,8 @@
     <string name="rules">Règles du jeu :
 
 Vous devez détruire le plus de vaisseaux possible avant qu\'ils ne traversent l\'écran !
-Cliquez n\'importe où pour tirer et diriger le canon en tournant votre appareil mobile.</string>
+Cliquez n\'importe où pour tirer et diriger le canon en tournant votre appareil mobile.
+
+    Attention manquer un tir ou laisser un vaisseau traverser vous fais perdre des points !
+Ne laissez pas votre score descendre en dessous de 0 sinon c\'est GAME OVER.</string>
 </resources>
