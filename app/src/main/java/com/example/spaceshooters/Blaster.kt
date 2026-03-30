@@ -1,5 +1,6 @@
 package com.example.spaceshooters
 
+import android.content.Context
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -8,7 +9,7 @@ class Blaster(pContext: GameActivity) {
 
     val context = pContext
     private val skin: ImageView = ImageView(pContext)
-    var rotationMode = 1
+    var rotationMode = -1
 
     init{
         display()
@@ -16,6 +17,10 @@ class Blaster(pContext: GameActivity) {
             resetRotation()
             true
         }
+
+        val prefs = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val invert = prefs.getBoolean("invert_rotation", false)
+        rotationMode = if (invert) -1 else 1
     }
 
     private fun resetRotation() {

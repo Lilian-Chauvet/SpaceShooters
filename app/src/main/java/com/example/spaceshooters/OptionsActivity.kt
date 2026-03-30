@@ -1,19 +1,22 @@
 package com.example.spaceshooters
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.ImageView
 import android.widget.RadioGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.util.Locale
 
 class OptionsActivity : AppCompatActivity() {
     lateinit var iv_return: ImageView
     lateinit var radioGroup: RadioGroup
+    lateinit var sw_invertRota:SwitchCompat
+    var isTouched = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +33,17 @@ class OptionsActivity : AppCompatActivity() {
             finish()
         }
         radioGroup = findViewById(R.id.rg_language)
+
+        //Lecture des preferences pour le switchCompat
+        val prefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val isInverted = prefs.getBoolean("invert_rotation", false)
+
+        sw_invertRota = findViewById(R.id.sw_invertRota)
+        sw_invertRota.isChecked = isInverted
+
+        sw_invertRota.setOnCheckedChangeListener { _, isChecked ->
+            prefs.edit().putBoolean("invert_rotation", isChecked).apply()
+        }
 
         val currentLang = LocaleHelper.getSavedLanguage(this)
 

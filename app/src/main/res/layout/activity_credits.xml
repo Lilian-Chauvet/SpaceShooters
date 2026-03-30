@@ -26,9 +26,10 @@
             android:layout_height="700dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
+            android:fontFamily="@font/jersey10"
             android:text="@string/credits_text"
             android:textColor="#FFFF00"
-            android:textSize="30sp"
+            android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="92dp" />

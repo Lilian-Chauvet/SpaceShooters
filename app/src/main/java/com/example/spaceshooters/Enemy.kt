@@ -4,11 +4,8 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
 
-class Enemy(pContext: GameActivity, pSpeed: Float = 2f) {
-
-    val context = pContext
+class Enemy(pContext: GameActivity, pSpeed: Float = 2f) : GameObject(pContext){
     var speed = pSpeed
-    val skin: ImageView = ImageView(pContext)
 
     fun attack() {
         display()
@@ -17,7 +14,7 @@ class Enemy(pContext: GameActivity, pSpeed: Float = 2f) {
         skin.post { skin.x = (Math.random() * (screenWidth - skin.width)).toFloat() }
     }
 
-    fun display() {
+    override fun display() {
         //afficher l'image
         skin.setImageResource(R.drawable.enemy)
 
@@ -33,7 +30,7 @@ class Enemy(pContext: GameActivity, pSpeed: Float = 2f) {
         context.gameArea.addView(skin)
     }
 
-    fun update() {
+    override fun update() {
         skin.y += speed.toInt()
     }
 
@@ -64,9 +61,5 @@ class Enemy(pContext: GameActivity, pSpeed: Float = 2f) {
         explosionView.postDelayed({
             context.gameArea.removeView(explosionView)
         }, duration)
-    }
-
-    fun disappear() {
-        context.gameArea.removeView(skin)
     }
 }

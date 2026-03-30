@@ -25,6 +25,8 @@
 Vous devez détruire le plus de vaisseaux possible avant qu\'ils ne traversent l\'écran !
 Cliquez n\'importe où pour tirer et diriger le canon en tournant votre appareil mobile.
 
+    Détruire un vaisseau fais gagner un point de vie.
     Attention manquer un tir ou laisser un vaisseau traverser vous fais perdre des points !
-Ne laissez pas votre score descendre en dessous de 0 sinon c\'est GAME OVER.</string>
+Ne laissez pas votre score descendre en dessous de 0 sinon c\'est GAME OVER.
+Vous pouvez réinitialiser la rotation du canon en restant appuyé dessus.</string>
 </resources>

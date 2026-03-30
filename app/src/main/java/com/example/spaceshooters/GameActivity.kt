@@ -26,7 +26,6 @@ class GameActivity : AppCompatActivity() {
 
     val enemies = mutableListOf<Enemy>()
     val projectiles = mutableListOf<Projectile>()
-    var difficulty = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,13 +74,16 @@ class GameActivity : AppCompatActivity() {
 
     private fun startGame() {
         blaster = Blaster(this)
+        changeScore(10)
         gameLoop()
     }
 
     private fun spawnEnemies() {
-        val spawnRate = 0.01f + (difficulty * 0.00001f)
-        var speed = (difficulty * 0.002f)
-        if (speed < 2f) speed = 2f
+        val spawnRate = 0.01f + (score * 0.0001f)
+        var speed = (score * 0.04f)
+        if (speed < 2f) {
+            speed = 2f
+        }
         if (Math.random() < spawnRate) {
             val enemy = Enemy(this, speed)
             enemies.add(enemy)
@@ -91,9 +93,9 @@ class GameActivity : AppCompatActivity() {
 
     fun changeScore(value: Int = 1) {
         if (value > 0) {
-            score += (value + difficulty * 0.001f).toInt()
+            score += (value + score * 0.01f).toInt()
         } else {
-            score += (value + difficulty * 0.0005f).toInt()
+            score += (value + score * 0.005f).toInt()
         }
 
         tv_score.text = score.toString()
@@ -116,7 +118,6 @@ class GameActivity : AppCompatActivity() {
             }
             val projectilesToRemove = mutableListOf<Projectile>()
             val enemiesToRemove = mutableListOf<Enemy>()
-            difficulty++
             spawnEnemies()
 
 
@@ -172,6 +173,7 @@ class GameActivity : AppCompatActivity() {
                     e.explode()
                     p.disappear()
                     changeScore()
+                    continue
                 }
             }
         }

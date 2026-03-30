@@ -19,10 +19,13 @@
     <string name="invert_rotation">
         Invert blaster rotation
     </string>
-    <string name="rules">
-    Game rules:\n
+    <string name="rules">Game Rules:
 
-    You must destroy as many ships as possible before they cross the screen!
-    Tap anywhere to shoot and aim the cannon by rotating your mobile device.
-    </string>
+You must destroy as many ships as possible before they cross the screen!
+Tap anywhere to shoot and aim the cannon by tilting your mobile device.
+
+    Destroy a ship makes you win one health point.
+    Be careful: missing a shot or letting a ship pass will make you lose points!
+Do not let your score fall below 0, otherwise it\'s GAME OVER.
+You can reset the cannon\'s rotation by long-pressing on it.</string>
 </resources>
